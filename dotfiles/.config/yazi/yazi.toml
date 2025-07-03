@@ -1,0 +1,21 @@
+[mgr]
+show_hidden = true
+
+[opener]
+# Define a new opener named 'set_wallpaper' for your script
+set_wallpaper = [
+  # Run your script with the first selected file ($1) as the argument
+  { run = '~/.config/hypr/scripts/background_picker.sh "$1"', for = "unix" }, # Restrict to Unix-like systems
+]
+
+[open]
+prepend_rules = [
+  # Associate various image file extensions with your 'set_wallpaper' opener
+  { name = "*.{jpg,jpeg,png,gif,bmp,webp}", use = "set_wallpaper" }, #
+]
+
+# You might want to keep a general opener for other file types as a fallback
+append_rules = [
+  { name = "*", use = "open" }, # Use the default 'open' opener for other files
+]
+
